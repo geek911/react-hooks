@@ -1,5 +1,14 @@
 import { useState, useEffect /* Runs in order as well */ } from 'react'
+import Message from './Message';
+import MyContext from './MyContext';
 
+/**
+ * create the context
+ * wrap with provider of the context 
+ * pass the value as an attribute of the context
+ * then to use the context value within the child element 
+ * you have to use useContext hooker
+ */
 
 
 export default function App() {
@@ -56,13 +65,18 @@ export default function App() {
 
 
     return (
-        /**
-         * Always make sure that you inclose the JSX with the parathesis
-         */
+
         <div>
             <h1>Count : {count}</h1>
             <button onClick={() => setCount(count + 1)}>Increment</button>
             <button onClick={() => setCount(count - 1)}>Decrement</button>
+            <div>
+                {/* This will enable the value to propagate the down to the last child of the tree */}
+                <MyContext.Provider value={"This is the message"}>
+                    <Message />
+                </MyContext.Provider>
+
+            </div>
         </div>
     );
 }
